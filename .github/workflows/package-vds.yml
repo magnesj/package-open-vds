@@ -20,7 +20,7 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          make -j2
+          make OpenVDS -j2
           dir
 
   package-openvds-linux:
@@ -38,5 +38,5 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          make -j2
+          make OpenVDS -j2
           ls 
