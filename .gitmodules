@@ -1,0 +1,3 @@
+[submodule "ThirdParty/openvds"]
+	path = ThirdParty/openvds
+	url = https://community.opengroup.org/osdu/platform/domain-data-mgmt-services/seismic/open-vds.git
