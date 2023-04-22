@@ -21,7 +21,12 @@ jobs:
           cd build
           cmake ..
           cmake --build . --config Release
-          dir
+          cmake --install .
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: openvds-windows
+          path: ThirdParty/openvds/Dist/ 
 
   package-openvds-linux:
     runs-on: ubuntu-20.04
@@ -31,6 +36,13 @@ jobs:
         with:
           submodules: true
 
+      - name: dependencies
+        run: |
+          apt-get update
+          apt-get install -y vim curl build-essential python3 python3-pip libboost-dev git doxygen openjdk-8-jdk libxml2-dev zlib1g-dev libcurl4-openssl-dev libuv1-dev uuid-dev gdb bash libssl-dev libboost-all-dev
+
+      # flags to disable some features
+      # cmake  -DBUILD_EXAMPLES=OFF -DBUILD_JAVA=OFF -DBUILD_PYTHON=OFF -DDISABLE_AWS_IOMANAGER=ON -DDISABLE_AZURESDKFORCPP_IOMANAGER=ON -DDISABLE_AZURE_PRESIGNED_IOMANAGER=ON ..
       - name: build open vds
         run: |
           cd ThirdParty
@@ -40,3 +52,5 @@ jobs:
           cmake ..
           cmake --build . --config Release
           ls 
+
+          
